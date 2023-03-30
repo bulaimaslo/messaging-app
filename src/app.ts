@@ -8,7 +8,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('Appp');
+  res.send('App works!');
 });
 
 const PORT = process.env.PORT || 3000;
