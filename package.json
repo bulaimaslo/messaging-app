@@ -10,7 +10,7 @@
     "esModuleInterop": true
   },
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "nodemon dist/app.js",
     "build": "tsc",
     "watch": "tsc --watch"
   },
