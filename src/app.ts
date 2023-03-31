@@ -1,16 +1,16 @@
 import express, {Request, Response} from 'express';
 import mongoose from './db';
-import messageRoutes from './routes/messageRoutes';
+import messageRouter from './routes/messageRoutes';
 
-const app = express();
+const app = express(); 
 
 app.use(express.json());
 
-mongoose.connection.once('open', () => {
+mongoose.connection.once('open', () => { 
   console.log('Connected to MongoDB');
 });
 
-app.use('/api/messages', messageRoutes);
+app.use('/api/messages', messageRouter);
 
 app.use((error: Error, req: Request, res: Response) => {
   console.error(error.stack);
@@ -22,4 +22,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-export default app; 
+export default app;  

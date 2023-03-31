@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { createMessage, getAllMessages } from '../controllers/messageController';
 
-const router = Router();
+const messageRouter = Router();
 
-router.post('/', createMessage);
-router.get('/', getAllMessages);
+messageRouter.post('/', createMessage);
+messageRouter.get('/', getAllMessages);
 
-export default router;
+export default messageRouter;
+ 
