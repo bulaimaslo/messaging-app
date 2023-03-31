@@ -8,6 +8,8 @@ const options: mongoose.ConnectOptions = {
   autoIndex: false, // Don't build indexes
   serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
   family: 4, // Use IPv4, skip trying IPv6
+  dbName: "data",
+  
 };
 
 mongoose

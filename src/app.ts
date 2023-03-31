@@ -1,27 +1,20 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import { Message } from './models/message';
+import express, {Request, Response} from 'express';
+import mongoose from './db';
+import messageRoutes from './routes/messageRoutes';
 
 const app = express();
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('App works!');
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB');
 });
 
-app.post('/api/messages', async (req, res) => {
-  try {
-    const { sender, receiver, content } = req.body;
-    const message = new Message({ sender, receiver, content });
-    const savedMessage = await message.save();
-    res.status(201).json(savedMessage);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
+app.use('/api/messages', messageRoutes);
+
+app.use((error: Error, req: Request, res: Response) => {
+  console.error(error.stack);
+  res.status(500).json({ message: 'Internal Server Error' });
 });
 
 const PORT = process.env.PORT || 3000;
